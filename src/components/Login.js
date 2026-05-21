@@ -65,9 +65,15 @@ const Login = () => {
       if (response.ok) {
         const result = await response.json();
         console.log("Server Response:", result);
+        
 
         if (result.success) {
-          
+           setFormData(prev => ({
+              ...prev,
+              email: "",
+              password: "",
+            }));
+                    
           // Set insertId in sessionStorage
           sessionStorage.setItem("insertId", result.id);
           // Redirect to OTP page after successful submit
